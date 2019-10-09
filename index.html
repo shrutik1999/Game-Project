@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title> Fun With Loops </title>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    
+    <body>
+
+<script>
+    function randomNumber(from, to) { 
+    return Math.floor(Math.random() * (to - from + 1)) + from; 
+    }
+    var activity = Number(prompt("What would you like to do? \n 1. Play a game \n 2. See some art \n 3. Watch time go by \n 4. Something else fun \n"));
+    while (activity !== 1 && activity !== 2 && activity !== 3 && activity !== 4){
+        activity = Number(prompt("What would you like to do? \n 1. Play a game \n 2. See some art \n 3. Watch time go by \n 4. Something else fun \n"));
+    }
+    if (activity===1) {
+        var random = randomNumber (1, 100);
+        var countGuesses = 0; //This will track number of guesses by user.
+        var guess = Number(prompt("I'm thinking of a number between 1 and 100." + " (" + random + "). Try to guess what it is..."));
+        countGuesses = countGuesses+1;
+            
+        while(guess !== random){
+            if (guess>=1 && guess<=100){
+                guess = Number(prompt("So close, but incorrect! Guess again."));
+                countGuesses = countGuesses+1;
+            }
+            if (guess<1){
+                guess = Number(prompt("That's too small. Guess again."));
+                countGuesses = countGuesses+1;
+            }
+            if (guess>100){
+                guess = Number(prompt("That's too large. Guess again."));
+                countGuesses = countGuesses+1;
+            }
+        }
+        if (guess === random) {
+            if (countGuesses === 1){
+                alert("THAT'S CORRECT. It took you 1 guess.");
+            }else{
+                alert ("THAT'S CORRECT! It took you " + countGuesses + " guesses.");
+            }
+        }
+    }
+        
+    if (activity === 2) {
+        document.body.style.background = "#000000";
+        var rows = Number(prompt("How many rows would you like?"));
+        var columns = Number(prompt("How many columns would you like?"));
+            
+        var currentRow = 1;
+        document.write("<table>");
+        while (currentRow <= rows) {
+            document.write("<tr>");
+            var currentCol = 1;
+            while (currentCol <= columns) {
+                var red = randomNumber(0, 255);
+                var green = randomNumber(0, 255);
+                var blue = randomNumber(0, 255);
+                var color = "rgb(" + red + "," + green + "," + blue + ")";
+                document.write("<td style='background-color:" + color + "'>");
+                document.write("</td>");
+                currentCol = currentCol + 1;
+            }
+            document.write("</tr>");
+            currentRow = currentRow + 1;
+        }
+            document.write("</table>");
+    }
+    if (activity === 3) {
+        document.body.style.background = "#000000";
+        var text = "" ; //variable is defined as a blank string in order to build throughout loop
+        for (var hours=12; hours<=12; hours=hours+1){
+            text = hours + ":";
+            for (var minutes=0; minutes<60; minutes=minutes+1){
+                if (minutes<10){
+                    text = text + "0" + minutes + ":";
+                }else{
+                    text = text + minutes + ":";
+                }
+                for (var seconds=0; seconds<60; seconds=seconds+1){
+                    if (seconds<10){
+                        document.write("<p>" + text+"0" + seconds + " AM" + "</p>");
+                    }else{
+                        document.write("<p>" + text + seconds + " AM" + "</p>");
+                    }
+                }
+                text=hours + ":";
+            }
+        }
+
+        for (var hours=1; hours<12; hours=hours+1){
+            text = hours + ":";
+            for (var minutes=0; minutes<60; minutes=minutes+1){
+                if (minutes<10){
+                    text = text + "0" + minutes + ":";
+                }else{
+                    text = text + minutes + ":";
+                }
+                for (var seconds=0; seconds<60; seconds=seconds+1){
+                    if (seconds<10){
+                        document.write("<p>" + text+"0" + seconds + " AM");
+                    }else{
+                        document.write("<p>" + text + seconds + " AM");
+                    }
+                }
+                text=hours + ":";
+            }
+        }
+            
+        for (var hours=12; hours<=12; hours=hours+1){
+            text = hours + ":";
+            for (var minutes=0; minutes<60; minutes=minutes+1){
+                if (minutes<10){
+                    text = text + "0" + minutes + ":";
+                }else{
+                    text = text + minutes + ":";
+                }
+                for (var seconds=0; seconds<60; seconds=seconds+1){
+                    if (seconds<10){
+                        document.write("<p>" + text+"0" + seconds + " PM");
+                    }else{
+                        document.write("<p>" + text + seconds + " PM");
+                    }
+                }
+                text=hours + ":";
+            }
+        }
+           
+       for (var hours=1; hours<12; hours=hours+1){
+            text = hours + ":";
+            for (var minutes=0; minutes<60; minutes=minutes+1){
+                if (minutes<10){
+                    text = text + "0" + minutes + ":";
+                }else{
+                    text = text + minutes + ":";
+                }
+                for (var seconds=0; seconds<60; seconds=seconds+1){
+                    if (seconds<10){
+                        document.write("<p>" + text+"0" + seconds + " PM");
+                    }else{
+                        document.write("<p>" + text + seconds + " PM");
+                    }
+                }
+                text=hours + ":";
+            }
+        }
+    }
+        
+    if (activity === 4) {
+        document.body.style.backgroundImage = "url('chalkboard.jpg')";
+        alert("Let's do some math! This simple factorial calculator will do all the work for you.");
+        var factorialInput = Number(prompt("Choose a number between 1 and 50 to find its factorial!"));
+        var factorialOutput = 1;
+        while (factorialInput<1 || factorialInput>50){
+            if(factorialInput<1){
+                factorialInput = Number(prompt("Choose a larger number!"));
+            }
+            if(factorialInput>50){
+                var factorialInput = Number(prompt("Choose a smaller number!"));
+            }   
+        }
+                
+        if (factorialInput>=1 && factorialInput<=50){            
+            while (factorialInput>0){
+                factorialOutput = factorialOutput *  factorialInput;
+                factorialInput = factorialInput - 1;
+            }
+            document.write("<div>" + "The factorial is " + factorialOutput + "!" + "</div>");
+        }
+  
+    }
+</script>
+
+    </body>
+</html>
